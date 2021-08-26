@@ -158,6 +158,7 @@ input {
   font-size: 1.2rem;
   border-top-left-radius: var(--radius);
   border-bottom-left-radius: var(--radius);
+
 }
 .btn {
   background: var(--clr-primary-5);
@@ -180,7 +181,7 @@ input {
   }
 }
 input.error {
-  border: 2px solid var(--clr-red-dark);
+  border: 5px solid red;
 }
 .colors {
   min-height: calc(100vh - 100px);
