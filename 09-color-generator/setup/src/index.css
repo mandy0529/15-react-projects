@@ -195,6 +195,7 @@ input.error {
   font-size: 1rem;
   text-transform: none;
 }
+
 .percent-value {
   margin-bottom: 0;
   color: var(--clr-grey-1);
@@ -214,4 +215,15 @@ input.error {
   text-transform: uppercase;
   font-size: 0.85rem;
   margin-top: 0.5rem;
+  transition: all 300ms ease-out;
+}
+.hover-alert {
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+  transition: all 300ms ease-out;
+  opacity:0
+}
+.color:hover .hover-alert {
+  opacity: 1
 }

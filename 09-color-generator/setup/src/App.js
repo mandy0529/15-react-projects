@@ -6,13 +6,13 @@ import Values from 'values.js';
 function App() {
   const [color, setColor] = useState('');
   const [error, setError] = useState(false);
-  const [list, setList] = useState([]);
+  const [list, setList] = useState(new Values('#123123').all(10));
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('hello');
     try {
-      let colors = new Values(color).all(10);
+      let colors = new Values(`#${color}`).all(10);
       console.log(colors);
       setList(colors);
       setError(false);
@@ -29,8 +29,7 @@ function App() {
         <form onSubmit={handleSubmit}>
           <input
             type="text"
-            placeholder="#F23432"
-            value={!color ? `#${color}` : color}
+            placeholder="#123123"
             onChange={(e) => setColor(e.target.value)}
             className={`${error ? 'error' : null}`}
           />
