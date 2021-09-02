@@ -1,6 +1,5 @@
 import React, {useState, useContext, useReducer, useEffect} from 'react';
-import {CLEAR, DEL, MINUS, PLUS} from './controlType';
-import cartItems from './data';
+import {CAL, CLEAR, DEL, LOADING, MINUS, NUM, PLUS, SHOW} from './controlType';
 import reducer, {initialState} from './reducer';
 // ATTENTION!!!!!!!!!!
 // I SWITCHED TO PERMANENT DOMAIN
@@ -17,21 +16,33 @@ const AppProvider = ({children}) => {
   const removeItem = (id) => {
     dispatch({type: DEL, payload: id});
   };
-  const plusItem = (id) => {
-    dispatch({type: PLUS, payload: id});
+
+  const fetchItem = async () => {
+    dispatch({type: LOADING});
+    const response = await fetch(url);
+    const cart = await response.json();
+    dispatch({type: SHOW, payload: cart});
   };
 
-  const minusItem = (id) => {
-    dispatch({type: MINUS, payload: id});
+  const plusMinusItem = (id, type) => {
+    dispatch({type: NUM, payload: {id, type}});
   };
+
+  useEffect(() => {
+    fetchItem();
+  }, []);
+
+  useEffect(() => {
+    dispatch({type: CAL});
+  }, [state.cart]);
+
   return (
     <AppContext.Provider
       value={{
         ...state,
         clearCart,
         removeItem,
-        plusItem,
-        minusItem,
+        plusMinusItem,
       }}
     >
       {children}

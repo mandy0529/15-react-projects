@@ -1,4 +1,6 @@
 export const CLEAR = 'clear';
 export const DEL = 'delete';
-export const PLUS = 'plus';
-export const MINUS = 'minus';
+export const CAL = 'calculate';
+export const LOADING = 'loading';
+export const SHOW = 'show';
+export const NUM = 'number';

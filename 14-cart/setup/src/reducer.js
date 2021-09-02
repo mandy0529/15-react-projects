@@ -1,18 +1,18 @@
-import {CLEAR, DEL, MINUS, PLUS} from './controlType';
+import {CAL, CLEAR, DEL, LOADING, MINUS, NUM, PLUS, SHOW} from './controlType';
 import cartItems from './data';
 
 export const initialState = {
-  loading: false,
+  loading: true,
   cart: cartItems,
-  total: 0,
+  price: 0,
   amount: 0,
 };
 
 const reducer = (state, action) => {
   switch (action.type) {
     case CLEAR:
-      console.log(state, state);
       return {...state, cart: []};
+
     case DEL:
       const filterItem = state.cart.filter(
         (item) => item.id !== action.payload
@@ -21,29 +21,41 @@ const reducer = (state, action) => {
         ...state,
         cart: filterItem,
       };
-    case PLUS:
-      const selectedItem = state.cart.map((cart) => {
-        if (cart.id === action.payload) {
-          return {...cart, amount: cart.amount + 1};
-        }
-        return cart;
-      });
-      return {...state, cart: selectedItem};
 
-    case MINUS:
-      const minusItem = state.cart
+    case CAL:
+      let {price, amount} = state.cart.reduce(
+        (acc, cur) => {
+          const {price, amount} = cur;
+          acc.amount += amount;
+          acc.price += price * amount;
+          return acc;
+        },
+        {
+          price: 0,
+          amount: 0,
+        }
+      );
+      price = parseFloat(price.toFixed(2));
+      return {...state, price, amount};
+
+    case NUM:
+      const calculatedCart = state.cart
         .map((item) => {
-          return item.id === action.payload
-            ? {...item, amount: item.amount - 1}
-            : item;
+          if (item.id === action.payload.id) {
+            return action.payload.type === 'inc'
+              ? {...item, amount: item.amount + 1}
+              : {...item, amount: item.amount - 1};
+          }
+          return item;
         })
         .filter((item) => item.amount !== 0);
-      console.log(minusItem, '마이너스');
+      return {...state, cart: calculatedCart};
 
-      return {
-        ...state,
-        cart: minusItem,
-      };
+    case LOADING:
+      return {...state, loading: true};
+
+    case SHOW:
+      return {...state, loading: false, cart: action.payload};
 
     default:
       throw new Error('no match any types');
