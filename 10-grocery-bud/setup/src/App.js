@@ -37,10 +37,8 @@ function App() {
       setName('');
     }
   };
-
   const handleChange = (e) => {
     setName(e.target.value);
-    console.log(e.target.value);
   };
 
   const handleClear = () => {
