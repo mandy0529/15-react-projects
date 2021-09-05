@@ -21,7 +21,7 @@ function App() {
         <h1>{loading ? '...loading' : 'pagination'}</h1>
         <div className="underline"></div>
       </div>
-      <section className="followers" L>
+      <section className="followers">
         <div className="container">
           {followers &&
             followers.map((item) => <Follower key={item.id} {...item} />)}
