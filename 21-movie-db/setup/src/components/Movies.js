@@ -12,7 +12,7 @@ const Movies = () => {
   return (
     <section className="movies">
       {movies.map((movie) => {
-        const {imdbID: id, Poster: poster, Title: title, Year: year} = movie;
+        const {imdbID: id, Poster: poster, Title: title, Year} = movie;
 
         return (
           <Link to={`/movie/${id}`} key={id} className="movie">
@@ -20,7 +20,7 @@ const Movies = () => {
               <img src={poster === 'N/A' ? url : poster} alt={title} />
               <div className="movie-info">
                 <h4 className="title">{title}</h4>
-                <p>{year}</p>
+                <p>{Year}</p>
               </div>
             </article>
           </Link>
