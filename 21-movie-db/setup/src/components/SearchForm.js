@@ -1,22 +1,16 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useRef} from 'react';
 import {useGlobalContext} from './context';
 import Error from './Error';
 
 const SearchForm = () => {
-  const {error, getMovie} = useGlobalContext();
-  const [query, setQuery] = useState('batman');
+  const {error, setQuery} = useGlobalContext();
   const searchValue = useRef('');
-  const queryApi = `&s=${query}`;
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setQuery(searchValue.current.value);
     searchValue.current.value = '';
   };
-
-  useEffect(() => {
-    getMovie(queryApi);
-  }, [query]);
 
   return (
     <form className="search-form" onSubmit={handleSubmit}>

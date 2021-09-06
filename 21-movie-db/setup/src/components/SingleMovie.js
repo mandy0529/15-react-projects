@@ -1,19 +1,13 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import {useParams, Link} from 'react-router-dom';
-import {useGlobalContext} from './context';
 import Error from './Error';
 import Loader from './Loader';
+import useFetch from './useFetch';
 
 const SingleMovie = () => {
   const {id} = useParams();
-  const [movieId] = useState(id);
-  const {getMovie, loading, error, movies} = useGlobalContext();
-
-  const idApi = `&i=${movieId}`;
-
-  useEffect(() => {
-    getMovie(idApi);
-  }, [id]);
+  const idApi = `&i=${id}`;
+  const {loading, error, movies} = useFetch(idApi);
 
   if (loading) {
     return <Loader />;
@@ -47,27 +41,3 @@ const SingleMovie = () => {
 };
 
 export default SingleMovie;
-
-// const idApi = `&i=${id}`;
-// const [loading, setLoading] = useState(true);
-// const [movie, setMovie] = useState('');
-// const [error, setError] = useState({show: false, msg: ''});
-
-// const getIdMovie = async () => {
-//   setLoading(true);
-//   try {
-//     const response = await fetch(`${API_ENDPOINT}${idApi}`);
-//     const data = await response.json();
-//     console.log(data);
-//     if (data.Response === 'True') {
-//       setMovie(data);
-//       setError({show: false, msg: ''});
-//     } else {
-//       setError({show: true, msg: data.Error});
-//     }
-//   } catch (error) {
-//     console.log(error);
-//   } finally {
-//     setLoading(false);
-//   }
-// };
