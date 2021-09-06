@@ -1,11 +1,8 @@
-import React from 'react'
-import { Switch, Route } from 'react-router-dom'
-
-import Home from './Home'
-import Movie from './SingleMovie'
+import React from 'react';
+import ControlRouter from './components/Router';
 
 function App() {
-  return <h2>movie DB starter</h2>
+  return <ControlRouter />;
 }
 
-export default App
+export default App;

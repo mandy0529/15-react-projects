@@ -270,6 +270,21 @@ Single Movie
   margin-top: 0.5rem;
   letter-spacing: var(--spacing);
 }
+@keyframes movement {
+  from { 
+    transform: rotate(0deg); 
+} to { 
+    transform: rotate(360deg); 
+}
+
+}
+
+.load {
+  text-align: center;
+  font-size: 80px;
+  animation:movement 3s infinite linear;
+}
+
 @media screen and (min-width: 992px) {
   .single-movie {
     grid-template-columns: 1fr 2fr;
