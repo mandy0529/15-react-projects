@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react'
-import data from './data'
-import Article from './Article'
+import React from 'react';
+import Hero from './Hero';
 
 function App() {
-  return <h2>dark mode starter</h2>
+  return <Hero />;
 }
 
-export default App
+export default App;
