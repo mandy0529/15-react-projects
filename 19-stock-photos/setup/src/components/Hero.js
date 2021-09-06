@@ -1,15 +1,16 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {useGlobalStyle} from './context';
 import {FaSearch} from 'react-icons/fa';
 import Photo from './Photo';
 import Loader from './Loader';
 
 const Hero = () => {
-  const {data, loading, value, setValue} = useGlobalStyle();
+  const {data, loading, value, setValue, setPage, getData} = useGlobalStyle();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setValue('');
+    setPage(1);
+    getData();
   };
   const handleChange = (e) => {
     setValue(e.target.value);
@@ -33,14 +34,14 @@ const Hero = () => {
       </section>
       <section className="photos">
         <div className="photos-center">
-          {data.map((item) => (
+          {data.map((item, index) => (
             <Photo key={item.id} {...item} />
           ))}
         </div>
         {loading && (
-          <h2 className="loading">
+          <div className="loading">
             <Loader />
-          </h2>
+          </div>
         )}
       </section>
     </main>

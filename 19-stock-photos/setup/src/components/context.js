@@ -12,7 +12,6 @@ const AppProvider = ({children}) => {
   const [value, setValue] = useState('');
 
   const client_id = process.env.REACT_APP_ACCESS_KEY;
-  const secret_id = process.env.REACT_APP_SECRET_KEY;
   const pageUrl = `&page=${page}`;
   const queryUrl = `&query=${value}`;
 
@@ -21,20 +20,23 @@ const AppProvider = ({children}) => {
     let url;
 
     if (value) {
-      console.log('1');
-      url = `${searchUrl}?client_id=${client_id}${queryUrl}`;
+      url = `${searchUrl}?client_id=${client_id}${pageUrl}${queryUrl}`;
     } else {
-      console.log('2');
       url = `${mainUrl}?client_id=${client_id}${pageUrl}`;
     }
 
     try {
       const response = await fetch(url);
       const pic = await response.json();
-      console.log(pic, 'pic');
-      //   setData((current) => {
-      //     return [...current, ...pic];
-      //   });
+      setData((current) => {
+        if (value && page === 1) {
+          return pic.results;
+        } else if (value) {
+          return [...current, ...pic.results];
+        } else {
+          return [...current, ...pic];
+        }
+      });
     } catch (error) {
       console.error(error);
     } finally {
@@ -44,7 +46,8 @@ const AppProvider = ({children}) => {
 
   useEffect(() => {
     getData();
-  }, [value, page]);
+    // eslint-disable-next-line
+  }, [page]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -60,10 +63,13 @@ const AppProvider = ({children}) => {
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+    // eslint-disable-next-line
   }, []);
 
   return (
-    <AppContext.Provider value={{loading, data, setValue, value}}>
+    <AppContext.Provider
+      value={{loading, data, setValue, value, setPage, getData}}
+    >
       {children}
     </AppContext.Provider>
   );

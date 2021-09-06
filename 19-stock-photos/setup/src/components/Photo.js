@@ -1,9 +1,7 @@
-import React, {useEffect} from 'react';
-import {useGlobalStyle} from './context';
+import React from 'react';
 
 const Photo = ({
   urls: {regular: url},
-  alt_description: description,
   likes,
   user: {
     username: name,
@@ -11,8 +9,6 @@ const Photo = ({
     profile_image: {medium: profile},
   },
 }) => {
-  const {loading} = useGlobalStyle();
-
   return (
     <article className="photo">
       <img src={url} alt={name} />
