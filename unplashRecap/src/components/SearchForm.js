@@ -1,12 +1,12 @@
-import React, {useRef} from 'react';
+import React, {useEffect, useRef} from 'react';
 import {useGlobalContext} from './context';
 import {FaSearch} from 'react-icons/fa';
 import {AiOutlineHome} from 'react-icons/ai';
-import Error from './Error';
+import useFetchData from './useFetchData';
 
 const SearchForm = () => {
   const inputValue = useRef();
-  const {setQuery} = useGlobalContext();
+  const {setQuery, setPage, getData} = useGlobalContext();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -14,6 +14,8 @@ const SearchForm = () => {
       return;
     }
     setQuery(inputValue.current.value);
+    setPage(1);
+    getData();
     inputValue.current.value = '';
   };
 
