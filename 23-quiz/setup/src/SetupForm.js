@@ -2,64 +2,25 @@ import React from 'react';
 import {useGlobalContext} from './context';
 
 const SetupForm = ({}) => {
-  const {quiz, handleChange, handleSubmit, error} = useGlobalContext();
   return (
     <main>
+      <h1>setup form</h1>
       <section className="quiz quiz-small">
         <form className="setup-form">
-          <h2>setup quiz</h2>
-          {/* amount */}
           <div className="form-control">
-            <label htmlFor="amount">number of questions</label>
-            <input
-              type="number"
-              name="amount"
-              id="amount"
-              value={quiz.amount}
-              onChange={handleChange}
-              className="form-input"
-              min={1}
-              max={50}
-            />
+            <input className="form-input" min={1} />
           </div>
           {/* category */}
           <div className="form-control">
-            <label htmlFor="category">category</label>
-            <select
-              name="category"
-              id="category"
-              value={quiz.category}
-              onChange={handleChange}
-              className="form-input"
-            >
-              <option value="sports">sports</option>
-              <option value="history">history</option>
-              <option value="politics">politics</option>
-            </select>
+            <select className="form-input"></select>
           </div>
           {/* difficulty */}
           <div className="form-control">
-            <label htmlFor="difficulty">select difficulty </label>
-            <select
-              name="difficulty"
-              id="difficulty"
-              value={quiz.difficulty}
-              onChange={handleChange}
-              className="form-input"
-            >
-              <option value="easy">easy</option>
-              <option value="medium">medium</option>
-              <option value="hard">hard</option>
-            </select>
+            <select className="form-input"></select>
           </div>
-          {error && (
-            <p className="error">
-              can't generate questions, please try differnt types
-            </p>
-          )}
-          <button type="submit" className="submit-btn" onClick={handleSubmit}>
-            start
-          </button>
+          <p className="error"></p>
+
+          <button className="submit-btn"></button>
         </form>
       </section>
     </main>

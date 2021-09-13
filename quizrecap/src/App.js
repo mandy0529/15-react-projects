@@ -1,18 +1,20 @@
 import React from 'react';
 import {useGlobalContext} from './context';
-import Quiz from './Quiz';
+
 import SetupForm from './SetupForm';
 import Loading from './Loading';
 
+import Quiz from './Quiz';
+
 function App() {
-  const {loading, waiting, questions, index} = useGlobalContext();
+  const {waiting, loading, index, questions} = useGlobalContext();
   if (loading) {
     return <Loading />;
   }
   if (waiting) {
-    return <SetupForm />;
+    return <SetupForm {...questions} />;
   }
-  console.log(questions);
+  console.log(questions, '퀘스쳔');
   return <Quiz {...questions[index]} />;
 }
 

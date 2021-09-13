@@ -50,20 +50,11 @@ const AppProvider = ({children}) => {
   }, [page]);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const windowHeight = window.innerHeight;
-      const windowScrollHeight = window.scrollY;
-      const bodyHeight = document.body.scrollHeight;
-
-      if (!loading && windowHeight + windowScrollHeight >= bodyHeight - 2) {
-        setPage((current) => {
-          return current + 1;
-        });
-      }
+    const handleResize = () => {
+      const width = window.innerWidth;
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-    // eslint-disable-next-line
   }, []);
 
   return (
