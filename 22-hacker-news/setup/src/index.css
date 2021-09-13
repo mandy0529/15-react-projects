@@ -208,17 +208,17 @@ Spinner
 @keyframes spinner {
   0% {
     transform: rotate(0deg) scale(1);
-    border-top-color: black; 
+    border-top-color: black;
   }
   33% {
-    border-top-color:teal;
+    border-top-color: teal;
   }
   66% {
-    border-top-color:tomato;
+    border-top-color: tomato;
   }
   100% {
     transform: rotate(360deg);
-    border-top-color:black;
+    border-top-color: black;
   }
 }
 

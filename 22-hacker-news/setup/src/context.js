@@ -7,6 +7,7 @@ import {
   HANDLE_PAGE,
   HANDLE_SEARCH,
 } from './actions';
+
 import reducer from './reducer';
 
 const API_ENDPOINT = 'https://hn.algolia.com/api/v1/search?';
@@ -49,14 +50,18 @@ const AppProvider = ({children}) => {
     dispatch({type: HANDLE_SEARCH, payload: query});
   };
 
+  const handlePage = (value) => {
+    dispatch({type: HANDLE_PAGE, payload: value});
+  };
+
   useEffect(() => {
     fetchNews(`${API_ENDPOINT}query=${state.query}&page=${state.page}`);
-  }, [state.query]);
+  }, [state.query, state.page]);
 
   return (
     <AppContext.Provider
       value="hello"
-      value={{...state, removeStory, handleSearch}}
+      value={{...state, removeStory, handleSearch, handlePage}}
     >
       {children}
     </AppContext.Provider>
