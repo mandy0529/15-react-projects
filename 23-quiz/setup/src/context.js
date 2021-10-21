@@ -33,7 +33,7 @@ const AppProvider = ({children}) => {
         dispatch({type: ERROR});
       }
     } catch {
-      throw new Error();
+      console.error('error');
     }
   };
   useEffect(() => {

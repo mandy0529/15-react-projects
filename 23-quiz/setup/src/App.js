@@ -12,8 +12,7 @@ function App() {
   if (waiting) {
     return <SetupForm />;
   }
-  console.log(questions);
-  return <Quiz {...questions[index]} />;
+  return {questions};
 }
 
 export default App;

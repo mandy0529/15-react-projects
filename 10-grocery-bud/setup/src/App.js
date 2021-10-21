@@ -92,7 +92,7 @@ function App() {
     <section className="section-center">
       <form className="grocery-form" onSubmit={handleSubmit}>
         {noti.show && <Alert {...noti} />}
-        <h3>grocery shopping</h3>
+        <h3>아빠 졸다가 일엉남s</h3>
         <div class="form-control">
           <input
             className="grocery"
