@@ -10,6 +10,7 @@ const getLocalStorage = () => {
     return [];
   }
 };
+
 function App() {
   const [name, setName] = useState('');
   const [list, setList] = useState(getLocalStorage());
@@ -60,9 +61,11 @@ function App() {
     setEditID(id);
     setName(specificItem.title);
   };
+
   useEffect(() => {
     localStorage.setItem('list', JSON.stringify(list));
   }, [list]);
+
   return (
     <section className="section-center">
       <form className="grocery-form" onSubmit={handleSubmit}>
